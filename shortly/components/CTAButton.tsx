@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
     button: {
         color: theme.palette.common.white,
         borderRadius: theme.spacing(3),
-        width: ({fullWidth}: { fullWidth?: boolean }) => fullWidth ? '100%' : 'auto'
+        width: ({fullWidth}: { fullWidth?: boolean }) => fullWidth ? '100%' : 'auto',
     }
 }));
 

@@ -1,10 +1,25 @@
-import type {NextPage} from 'next'
+import type { NextPage } from 'next';
+import Head from "next/head";
+
+import { Header, Footer } from '../components'
 
 const Home: NextPage = () => {
-  return (
-    <div>
-    </div>
-  )
+    return (
+        <>
+            <Head>
+                <title>Shortly - Shorten your URLs</title>
+                <meta name="description" content="Shortly, a URL shortener"/>
+                <link rel="icon" href="/favicon.ico"/>
+            </Head>
+            <div id="home">
+                <Header />
+                <main>
+
+                </main>
+                <Footer />
+            </div>
+        </>
+    )
 }
 
-export default Home
+export default Home;

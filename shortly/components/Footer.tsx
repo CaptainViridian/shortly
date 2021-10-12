@@ -1,16 +1,19 @@
-import {makeStyles} from "@material-ui/core/styles";
 import React, {ReactElement} from "react";
-import {Button, Container, Typography} from "@material-ui/core";
-import {flexbox} from "@material-ui/system";
+import {Container, Typography} from "@material-ui/core";
+import {makeStyles} from "@material-ui/core/styles";
+
+import FacebookIcon from '../assets/icon-facebook.svg';
+import TwitterIcon from '../assets/icon-twitter.svg';
+import PinterestIcon from '../assets/icon-pinterest.svg';
+import InstagramIcon from '../assets/icon-instagram.svg';
 
 const useStyles = makeStyles((theme) => ({
     footer: {
         color: theme.palette.common.white,
         backgroundColor: theme.palette.common.veryDarkBlue,
-        padding: theme.spacing(4, 10),
     },
     container: {
-        padding: 0,
+        padding: theme.spacing(4, 10),
         display: "flex",
         justifyContent: "space-between"
     },
@@ -40,7 +43,15 @@ const useStyles = makeStyles((theme) => ({
     },
     link: {
         fontSize: '0.5rem',
-    }
+    },
+    socialLinks: {
+        padding: theme.spacing(0, 3),
+        display: 'flex',
+        gap: theme.spacing(1.5),
+    },
+    socialIcon: {
+        width: theme.spacing(1.5),
+    },
 }));
 
 interface FooterItem {
@@ -56,7 +67,7 @@ function Category({title, items}: { title: string, items: Array<FooterItem> }): 
             <ul className={classes.linkList}>
                 {items.map(({name, href}) => (
                     <a href={href} key={name}>
-                        <Typography className={classes.link} color="textSecondary" >{name}</Typography>
+                        <Typography className={classes.link} color="textSecondary">{name}</Typography>
                     </a>
                 ))}
             </ul>
@@ -64,7 +75,18 @@ function Category({title, items}: { title: string, items: Array<FooterItem> }): 
     );
 }
 
-const createFooterItem = (name: string): FooterItem => ({ name, href: '#'})
+function SocialLink({iconSrc}: { iconSrc: string }): ReactElement {
+    const classes = useStyles();
+    return (
+        <a href="#">
+            <img className={classes.socialIcon} src={iconSrc}/>
+        </a>
+    );
+}
+
+const socialIcons = [FacebookIcon, TwitterIcon, PinterestIcon, InstagramIcon];
+
+const createFooterItem = (name: string): FooterItem => ({name, href: '#'});
 
 function Footer(): ReactElement {
     const classes = useStyles();
@@ -73,18 +95,19 @@ function Footer(): ReactElement {
             <Container className={classes.container}>
                 <Typography className={classes.title} variant="h6" color="inherit">Shortly</Typography>
                 <div className={classes.links}>
-                    <Category title="Features" items={['Link Shortening', 'Branded Links', 'Analytics'].map(createFooterItem)}/>
+                    <Category title="Features"
+                              items={['Link Shortening', 'Branded Links', 'Analytics'].map(createFooterItem)}/>
                     <Category title="Resources" items={['Blog', 'Developers', 'Support'].map(createFooterItem)}/>
-                    <Category title="Company" items={['About', 'Our Team', 'Careers', 'Contact'].map(createFooterItem)}/>
+                    <Category title="Company"
+                              items={['About', 'Our Team', 'Careers', 'Contact'].map(createFooterItem)}/>
+                    <div className={classes.socialLinks}>
+                        {socialIcons.map(icon => <SocialLink iconSrc={icon.src}/>)}
+                    </div>
                 </div>
-                <div>
 
-                </div>
             </Container>
         </footer>
     );
 }
-
-
 
 export default Footer;

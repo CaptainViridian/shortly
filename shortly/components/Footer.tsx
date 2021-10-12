@@ -13,9 +13,17 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.common.veryDarkBlue,
     },
     container: {
-        padding: theme.spacing(4, 10),
         display: "flex",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        flexDirection: 'column',
+        alignItems: 'center',
+        paddingTop: theme.spacing(3),
+        paddingBottom: theme.spacing(3),
+        [theme.breakpoints.up('sm')]: {
+            flexDirection: 'row',
+            padding: theme.spacing(4, 10),
+            alignItems: 'flex-start',
+        },
     },
     title: {
         fontWeight: 'bold',
@@ -23,12 +31,22 @@ const useStyles = makeStyles((theme) => ({
     links: {
         display: "flex",
         justifyContent: "space-between",
-        gap: theme.spacing(5)
+        flexDirection: 'column',
+        alignItems: 'center',
+        [theme.breakpoints.up('sm')]: {
+            gap: theme.spacing(5),
+            flexDirection: 'row',
+            alignItems: 'flex-start',
+        }
     },
     category: {
         display: "flex",
         flexDirection: "column",
         gap: theme.spacing(1.5),
+        margin: theme.spacing(2, 0),
+        [theme.breakpoints.up('sm')]: {
+            margin: theme.spacing(0),
+        },
     },
     linkList: {
         margin: 0,
@@ -36,10 +54,18 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         flexDirection: "column",
         gap: theme.spacing(0.5),
+        alignItems: 'center',
+        [theme.breakpoints.up('sm')]: {
+            alignItems: 'flex-start',
+        },
     },
     linkListTitle: {
         fontSize: '0.5rem',
-        fontWeight: "bold"
+        fontWeight: "bold",
+        textAlign: 'center',
+        [theme.breakpoints.up('sm')]: {
+            textAlign: 'auto',
+        },
     },
     link: {
         fontSize: '0.5rem',

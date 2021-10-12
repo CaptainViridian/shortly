@@ -4,7 +4,9 @@ import {Container, Typography} from "@material-ui/core";
 import ImageFormSmall from '../assets/bg-shorten-mobile.svg';
 import ImageFormLarge from '../assets/bg-shorten-desktop.svg';
 import ActionButton from "./ActionButton";
-import {ChangeEvent, FormEvent, useState} from "react";
+import {ChangeEvent, FormEvent, useCallback, useState} from "react";
+import {getShortenedLink} from "../connection";
+import {shortenLink} from "../thunks";
 
 const useStyles = makeStyles((theme) => ({
     shortener: {
@@ -94,16 +96,17 @@ function ShortenerForm() {
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setError(false);
-        console.log(event.currentTarget.value)
         setInputValue(event.currentTarget.value);
     }
 
-    const handleSubmit = (event: FormEvent) => {
+    const handleSubmit = useCallback(async (event: FormEvent) => {
         event.preventDefault();
         if (inputValue === '') {
             setError(true);
         }
-    }
+
+        const shortenedLink = await shortenLink(inputValue);
+    }, [inputValue]);
 
     return (
         <form className={classes.form} onSubmit={handleSubmit}>

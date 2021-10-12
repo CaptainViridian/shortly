@@ -2,6 +2,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import {Container, Typography} from "@material-ui/core";
 
 import ImageFormSmall from '../assets/bg-shorten-mobile.svg';
+import ImageFormLarge from '../assets/bg-shorten-desktop.svg';
 import ActionButton from "./ActionButton";
 import {ChangeEvent, FormEvent, useState} from "react";
 
@@ -34,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
             flexDirection: 'row',
             padding: theme.spacing(3, 4),
             alignItems: 'center',
+            backgroundImage: `url(${ImageFormLarge.src})`,
         }
     },
     formInput: {

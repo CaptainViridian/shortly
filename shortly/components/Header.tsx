@@ -2,9 +2,9 @@ import React, {ReactElement, useState} from "react";
 
 import {makeStyles} from '@material-ui/core/styles'
 import {Button, Container, Divider, IconButton, MenuItem, Paper, Toolbar, Typography} from "@material-ui/core";
-import { Menu as MenuIcon } from '@material-ui/icons'
+import {Menu as MenuIcon} from '@material-ui/icons'
 
-import CTAButton from "./CTAButton";
+import ActionButton from "./ActionButton";
 
 import ShortlyLogo from '../assets/logo.svg';
 
@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     divider: {
         width: '100%',
         backgroundColor: theme.palette.grey[500],
-        margin: theme.spacing(1,0),
+        margin: theme.spacing(1, 0),
         opacity: '.1',
     }
 }));
@@ -90,9 +90,9 @@ function HeaderMenu({open, handleClose, navigationOptions, loginOptions}: {
     return open ? (
         <Paper className={classes.menuRoot}>
             {navigationOptions.map(({name}) => <MenuItem key={name}>{name}</MenuItem>)}
-            <Divider className={classes.divider} />
+            <Divider className={classes.divider}/>
             {loginOptions.map(({name, showCTAButton}) => showCTAButton ? (
-                <CTAButton fullWidth key={name} text={name}  />
+                <ActionButton fullWidth key={name} text={name}/>
             ) : (
                 <MenuItem onClick={handleClose} key={name}>{name}</MenuItem>
             ))}
@@ -129,7 +129,7 @@ function Header(): ReactElement {
 
                     <Toolbar className={classes.toolbar}>
                         {loginOptions.map(({name, showCTAButton}) => showCTAButton ? (
-                            <CTAButton key={name} text={name}/>
+                            <ActionButton key={name} text={name}/>
                         ) : (
                             <HeaderDefaultButton key={name} text={name}/>
                         ))}
@@ -139,12 +139,16 @@ function Header(): ReactElement {
                         className={classes.menuButton}
                         onClick={handleClickMenuButton}
                     >
-                        <MenuIcon />
+                        <MenuIcon/>
                     </IconButton>
                 </header>
             </Container>
-            <HeaderMenu open={menuOpen} handleClose={handleCloseMenu} loginOptions={loginOptions}
-                        navigationOptions={navigationOptions}/>
+            <HeaderMenu
+                open={menuOpen}
+                handleClose={handleCloseMenu}
+                loginOptions={loginOptions}
+                navigationOptions={navigationOptions}
+            />
         </>
     );
 }

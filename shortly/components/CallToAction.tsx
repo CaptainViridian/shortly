@@ -3,11 +3,10 @@ import {ReactElement} from "react";
 
 import {Container, Typography} from "@material-ui/core";
 
-import CTAButton from "./CTAButton";
+import ActionButton from "./ActionButton";
 
 import ImageBoostSmall from '../assets/bg-boost-mobile.svg';
 import ImageBoostLarge from '../assets/bg-boost-desktop.svg';
-
 
 const useStyles = makeStyles((theme) => ({
     callToAction: {
@@ -39,7 +38,7 @@ function CallToAction(): ReactElement {
         <div className={classes.callToAction}>
             <Container className={classes.container}>
                 <Typography className={classes.text}>Boost your links today</Typography>
-                <CTAButton text="Get Started"/>
+                <ActionButton text="Get Started"/>
             </Container>
 
         </div>

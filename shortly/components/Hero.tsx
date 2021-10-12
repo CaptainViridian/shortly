@@ -1,9 +1,9 @@
-import {makeStyles, Theme} from "@material-ui/core/styles";
+import {makeStyles} from "@material-ui/core/styles";
 import {ReactElement} from "react";
 
 import ImageWorking from '../assets/illustration-working.svg';
-import {Container, Typography, useMediaQuery} from "@material-ui/core";
-import CTAButton from "./CTAButton";
+import {Container, Typography} from "@material-ui/core";
+import ActionButton from "./ActionButton";
 
 const useStyles = makeStyles((theme) => ({
     hero: {
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '0.8rem',
     },
     leftTextContent: {
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down('xs')]: {
             display: 'flex',
             flexDirection: 'column',
             gap: theme.spacing(2),
@@ -62,7 +62,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Hero(): ReactElement {
     const classes = useStyles();
-    const largeScreen = useMediaQuery((theme: Theme) => theme.breakpoints.up('sm'));
 
     return (
         <Container className={classes.hero} maxWidth="lg">
@@ -75,9 +74,9 @@ function Hero(): ReactElement {
                         Build your brand's recognition and get detailed insights on how your links are performing.
                     </Typography>
                 </div>
-                <CTAButton text="Get Started"/>
+                <ActionButton text="Get Started"/>
             </div>
-            <img src={ImageWorking.src} className={classes.picture}/>
+            <img alt="Drawn picture of a person working by a computer." src={ImageWorking.src} className={classes.picture}/>
         </Container>
     )
 }

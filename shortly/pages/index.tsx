@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import Head from "next/head";
 
-import {Header, Footer, CallToAction, Hero} from '../components'
+import {Header, Footer, CallToAction, Hero, Shortener} from '../components'
 
 const Home: NextPage = () => {
     return (
@@ -14,6 +14,7 @@ const Home: NextPage = () => {
             <div id="home">
                 <Header />
                 <Hero />
+                <Shortener />
                 <CallToAction />
                 <Footer />
             </div>

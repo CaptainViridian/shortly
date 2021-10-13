@@ -8,6 +8,7 @@ interface Props {
     borderRadius?: number;
     onClick?: () => void;
     type?: "button" | "submit" | "reset";
+    color?: string;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -15,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.common.white,
         borderRadius: ({borderRadius}: Props) => theme.spacing(borderRadius || 3),
         width: ({fullWidth}: Props) => fullWidth ? '100%' : 'auto',
+        backgroundColor: ({color}: Props) => color ? color : '',
     }
 }));
 

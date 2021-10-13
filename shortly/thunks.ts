@@ -2,8 +2,9 @@ import {getShortenedLink} from "./connection";
 import {LOCAL_STORAGE_LINKS_KEY} from "./constants";
 import {Link} from "./model/Link";
 
-function getStoredLinks() {
-    return JSON.parse(window.localStorage.getItem(LOCAL_STORAGE_LINKS_KEY) || '[]') as Array<Link>
+export function getStoredLinks() {
+    const storedObject = window.localStorage.getItem(LOCAL_STORAGE_LINKS_KEY);
+    return JSON.parse(storedObject || '[]') as Array<Link>
 }
 
 export async function shortenLink(link: string): Promise<Link> {

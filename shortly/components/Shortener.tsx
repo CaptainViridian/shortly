@@ -4,9 +4,9 @@ import {Container, Typography} from "@material-ui/core";
 import ImageFormSmall from '../assets/bg-shorten-mobile.svg';
 import ImageFormLarge from '../assets/bg-shorten-desktop.svg';
 import ActionButton from "./ActionButton";
-import {ChangeEvent, FormEvent, useCallback, useState} from "react";
-import {getShortenedLink} from "../connection";
+import {ChangeEvent, FormEvent, useState} from "react";
 import {shortenLink} from "../thunks";
+import {Link} from "../model/Link";
 
 const useStyles = makeStyles((theme) => ({
     shortener: {
@@ -41,7 +41,6 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     formInput: {
-        display: 'flex',
         flexDirection: 'column',
         gap: theme.spacing(0.5),
         width: '100%',
@@ -88,7 +87,7 @@ function FormInput({inputValue, handleChange, error}: {
     )
 }
 
-function ShortenerForm() {
+function ShortenerForm({onSubmit}: { onSubmit: (link: Link) => void }) {
     const classes = useStyles();
 
     const [inputValue, setInputValue] = useState('');
@@ -99,14 +98,16 @@ function ShortenerForm() {
         setInputValue(event.currentTarget.value);
     }
 
-    const handleSubmit = useCallback(async (event: FormEvent) => {
+    const handleSubmit = async function (event: FormEvent) {
         event.preventDefault();
         if (inputValue === '') {
             setError(true);
+            return;
         }
 
-        const shortenedLink = await shortenLink(inputValue);
-    }, [inputValue]);
+        const newLink = await shortenLink(inputValue);
+        onSubmit(newLink);
+    };
 
     return (
         <form className={classes.form} onSubmit={handleSubmit}>
@@ -118,11 +119,11 @@ function ShortenerForm() {
     )
 }
 
-function Shortener() {
+function Shortener({addNewLink}: { addNewLink: (link: Link) => void }) {
     const classes = useStyles();
     return (
         <Container className={classes.shortener}>
-            <ShortenerForm/>
+            <ShortenerForm onSubmit={addNewLink}/>
         </Container>
     )
 }
